@@ -1,0 +1,152 @@
+version: '2'
+
+services:
+  ssp-app:
+    image: tiredofit/self-service-password:latest
+    container_name: ssp-app
+    volumes:
+      - ./data/:/www/ssp
+      - ./logs/:/www/logs
+    environment:
+      - VIRTUAL_HOST=url.hostname.com
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=url.hostname.com
+      - LETSENCRYPT_EMAIL=user@hostname.com
+
+      - PHP_MEMORY_LIMIT=128M
+      - UPLOAD_MAX_SIZE=2G
+      - APC_SHM_SIZE=128M
+      - OPCACHE_MEM_SIZE=128
+      - TZ=America/Vancouver
+
+      - ZABBIX_HOSTNAME=ssp-app
+
+      - LDAP_SERVER=ldap://openldap.example.com
+      - LDAP_STARTTLS=false
+      - LDAP_BINDDN=cn=admin,dc=example,dc=com
+      - LDAP_BINDPASS=supersecurepassword
+      - LDAP_BASE_SEARCH=ou=people,dc=example,dc=com
+      - LDAP_LOGIN_ATTRIBUTE=uid
+      - LDAP_FULLNAME_ATTRIBUTE=cn
+
+# Active Directory mode
+# true: use unicodePwd as password field
+# false: LDAPv3 standard behavior
+      - ADMODE=false
+# Force account unlock when password is changed
+      - AD_OPT_FORCE_UNLOCK=false
+# Force user change password at next login
+      - AD_OPT_FORCE_PWD_CHANGE=false
+# Allow user with expired password to change password
+      - AD_OPT_CHANGE_EXPIRED_PASSWORD=false
+
+# Samba mode
+# true: update sambaNTpassword and sambaPwdLastSet attributes too
+# false: just update the password
+      - SAMBA_MODE=false
+
+# Shadow options - require shadowAccount objectClass
+# Update shadowLastChange
+      - SHADOW_OPT_UPDATE_SHADOWLASTCHANGE=false
+# Hash mechanism for password:
+# SSHA
+# SHA
+# SMD5
+# MD5
+# CRYPT
+# clear (the default)
+# auto (will check the hash of current password)
+# This option is not used with ad_mode = true
+      - PASSWORD_HASH=auto
+
+# Local password policy
+# This is applied before directory password policy
+# Minimal length
+      - PASSWORD_MIN_LENGTH: 0
+# Maximal length
+      - PASSWORD_MAX_LENGTH: 0
+# Minimal lower characters
+      - PASSWORD_MIN_LOWERCASE: 0
+# Minimal upper characters
+      - PASSWORD_MIN_UPPERCASE: 0
+# Minimal digit characters
+      - PASSWORD_MIN_DIGIT: 0
+# Minimal special characters
+      - PASSWORD_MIN_SPECIAL: 0
+# Dont reuse the same password as currently
+      - PASSWORD_NO_REUSE=true
+# Show policy constraints message:
+# always
+# never
+# onerror
+      - PASSWORD_SHOW_POLICY=never
+# Position of password policy constraints message:
+# above - the form
+# below - the form
+      - PASSWORD_SHOW_POLICY_POSITION=above
+
+# Who changes the password?
+# Also applicable for question/answer save
+# user: the user itself
+# manager: the above binddn
+      - WHO_CAN_CHANGE_PASSWORD=user
+
+## Questions/answers
+# Use questions/answers?
+# true (default)
+# false
+      - QUESTIONS_ENABLED=false
+
+## Mail
+# LDAP mail attribute
+      - LDAP_MAIL_ATTRIBUTE=mail
+# Who the email should come from
+      - MAIL_FROM=noreply@example.com
+      - MAIL_FROM_NAME=Password Admin
+# Notify users anytime their password is changed
+      - NOTIFY_ON_CHANGE=true
+# PHPMailer configuration (see https://github.com/PHPMailer/PHPMailer)
+      - SMTP_DEBUG: 0
+      - SMTP_HOST=smtp.example.com
+      - SMTP_AUTH_ON=true
+      - SMTP_USER=noreply@example.com
+      - SMTP_PASS=smtppassword
+      - SMTP_PORT: 587
+      - SMTP_SECURE_TYPE=tls
+## SMS
+# Use sms (NOT WORKING YET)
+      - USE_SMS=false
+# Reset URL (if behind a reverse proxy)
+      - IS_BEHIND_PROXY=false
+# Display help messages
+      - SHOW_HELP=true
+# Language
+      - LANG=en
+# Debug mode
+      - DEBUG_MODE=false
+# Encryption, decryption keyphrase
+      - SECRETEKEY=secretkey
+## CAPTCHA
+# Use Google reCAPTCHA (http://www.google.com/recaptcha)
+      - USE_RECAPTCHA=false
+# Go on the site to get public and private key
+      - RECAPTCHA_PUB_KEY=akjsdnkajnd
+      - RECAPTCHA_PRIV_KEY=aksdjnakjdnsa
+## Default action
+# change
+# sendtoken
+# sendsms
+      - DEFAULT_ACTION=change
+
+    networks:
+      - proxy-tier
+    restart: always
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+
+    environment:
+
