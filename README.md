@@ -37,7 +37,7 @@ This image relies on an external LDAP Server, external SMTP Server, and is meant
 
 # Installation
 
-Automated builds of the image are available on [Registry](https://hub.docker.com/tiredofit/self-service-password) and is the recommended method of installation.
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/tiredofit/self-service-password) and is the recommended method of installation.
 
 
 ```bash
@@ -67,7 +67,7 @@ The following directories are used for configuration and can be mapped for persi
 
 ### Environment Variables
 
-Below is the complete list of available options that can be used to customize your installation.
+Along with the Environment Variables from the [Base image](https://hub.docker.com/r/tiredofit/alpine), and the [Nginx+PHP-FPM Engine](https://hub.docker.com/r/tiredofit/nginx-php-fpm) below is the complete list of available options that can be used to customize your installation.
 
 | Parameter | Description |
 |-----------|-------------|

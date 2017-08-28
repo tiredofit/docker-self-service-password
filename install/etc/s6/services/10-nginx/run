@@ -1,10 +1,13 @@
 #!/usr/bin/with-contenv bash
 
-	if [ ! -f /tmp/state/10-nginx ]; then
-  sleep 2
+while [ ! -f /tmp/state/99-container-init ]
+do
+  sleep 1
+done
+
+if [ ! -f /tmp/state/10-nginx ]; then
 
 	## Setting up files and paths
-
 	mkdir -p /www/logs/
 	touch /www/logs/self-service-password
 	chown nginx:www-data /www/logs/self-service-password
@@ -151,10 +154,8 @@
 
 	  ## Start nginx
 	  mkdir -p /www/logs/nginx
-	  mkdir -p /www/logs/smtp
 	  mkdir -p /tmp/nginx
 	  chown -R nginx /www/logs/nginx
-	  chown -R nginx /www/logs/smtp
 	  chown nginx /tmp/nginx
 	  mkdir -p /tmp/state
 	  echo 'Initialization Complete' >/tmp/state/10-nginx

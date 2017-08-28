@@ -1,3 +1,7 @@
+## 2017-08-10 2.5 <daveconroy@selfdesign.org>
+
+* File Cleanup
+
 ## 2017-08-10 2.4 <daveconroy@selfdesign.org>
 
 * Added SKIP_MAIL (true/false default false) to be used for webapps/activate-selfdesign-org to skip email 
