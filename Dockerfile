@@ -1,5 +1,5 @@
 FROM tiredofit/nginx-php-fpm:7.0-latest
-MAINTAINER Dave Conroy <dave at tiredofit dot ca>
+LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Dependency Installation
   RUN apk update && \
