@@ -62,7 +62,7 @@ The following directories are used for configuration and can be mapped for persi
 
 | Directory | Description |
 |-----------|-------------|
-| `/www/ssp` | Root Wordpress Directory |
+| `/www/ssp` | Root SelfService Password Directory |
 | `/www/logs` | Nginx and php-fpm logfiles |
 
 ### Environment Variables
@@ -71,12 +71,6 @@ Along with the Environment Variables from the [Base image](https://hub.docker.co
 
 | Parameter | Description |
 |-----------|-------------|
-| `PHP_MEMORY_LIMIT` |Amount of memory php-fpm process should use (Default 128M) |
-| `UPLOAD_MAX_SIZE` | Maximum Upload Size: (Default 2G) |
-| `APC_SHM_SIZE` | PHP7 APC SHM Cache Size: (Default 128M) |
-| `OPCACHE_MEM_SIZE` | PHP7 OPCache Size (Default 128) |
-| `TZ` | Timezone - Use Unix Timezone format (Default America/Vancouver) |
-| `DEBUG` | Set this to `true` to enable entrypoint debugging. |
 | `LDAP_SERVER` | Ldap server. No default. |
 | `LDAP_STARTTLS` | Enable TLS on Ldap bind. No default. |
 | `LDAP_BINDDN` | Ldap bind dn. No default. |
