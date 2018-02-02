@@ -160,7 +160,7 @@ $token_lifetime = "<TOKEN_LIFETIME>";
 ## Mail
 # LDAP mail attribute
 $mail_attribute = "<LDAP_MAIL_ATTRIBUTE>";
-# Skip asking for the mail address (used for activate.selfdesign.org)
+# Skip asking for the mail address (used for activate.example.org)
 $mail_address_use_ldap = <SKIP_MAIL>;
 
 # Who the email should come from
