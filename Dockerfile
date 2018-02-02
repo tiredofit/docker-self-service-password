@@ -1,4 +1,4 @@
-FROM tiredofit/nginx-php-fpm:7.0-latest
+FROM tiredofit/nginx-php-fpm:7.0
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Dependency Installation

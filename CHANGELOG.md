@@ -1,3 +1,7 @@
+## 2018-02-01 2.6 <daveconroy@selfdesign.org>
+
+* Rebase
+
 ## 2017-08-10 2.5 <daveconroy@selfdesign.org>
 
 * File Cleanup

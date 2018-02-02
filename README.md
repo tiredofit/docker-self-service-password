@@ -32,9 +32,7 @@ This Container uses Alpine:3.5 as a base. Additional Components are PHP7 w/ APC,
 
 # Prerequisites
 
-This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) and optionally the [Let's Encrypt Proxy Companion @ https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) in order to serve your pages. However, it will run just fine on it's own if you map appropriate ports.
-
-This also relies on an external LDAP Server.
+This image relies on an external LDAP Server, external SMTP Server, and is meant to be run behind a reverse SSL Proxy such as nginx-proxy.
 
 
 # Installation
@@ -95,7 +93,8 @@ Along with the Environment Variables from the [Base image](https://hub.docker.co
 | `PASSWORD_MIN_SPECIAL` | Minimal special characters. Defaults to `0` (unchecked).  |
 | `PASSWORD_NO_REUSE` | Dont reuse the same password as currently. Defaults to `true`. |
 | `PASSWORD_SHOW_POLICY` | Show policy constraints message`always` `never` `onerror`. Defaults to `never` |
-| `PASSWORD_SHOW_POLICY_POSITION` | Position of password policy constraints message`above` `below` the form. Defaults to `above` |
+| `PASSWORD_SHOW_POLICY_POSITION` | Position of password policy constraints message`above` `below` - 
+the form. Defaults to `above` |
 | `WHO_CAN_CHANGE_PASSWORD` | Who changes the password?  Also applicable for question/answer save `user`: the user itself `manager`: the above binddn. Defaults to `user` |
 | `QUESTIONS_ENABLED` | Use questions/answers?  `true` or `false`. Defaults to `true` |
 | `LDAP_MAIL_ATTRIBUTE` | LDAP mail attribute. Defaults to `mail` |
