@@ -62,7 +62,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	IS_BEHIND_PROXY=${IS_BEHIND_PROXY:-false}
 
 	if [[ ${IS_BEHIND_PROXY} == true  ]]; then
-		 sed  -i '209s .\{1\}  ' /assets/ssp/config.inc.php.template
+		 sed  -i '211s .\{1\}  ' /assets/ssp/config.inc.php.template
 	fi
 
 	SHOW_HELP=${SHOW_HELP:-true}
