@@ -82,7 +82,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	if [ ! -f /www/ssp/index.php ] ; then
 	   echo "Self Service Password Not Found, Downloading and setting up......"
 	   mkdir -p /www/ssp/
-	   git clone https://github.com/ltb-project/self-service-password /www/ssp
+	   git clone --depth 1 https://github.com/ltb-project/self-service-password /www/ssp
 	   echo "Insalled... Please visit the website.."
 	   chown nginx:www-data /www/ssp
 	fi
