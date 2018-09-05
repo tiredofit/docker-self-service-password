@@ -147,7 +147,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<RECAPTCHA_SIZE>/$RECAPTCHA_SIZE/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<DEFAULT_ACTION>/$DEFAULT_ACTION/g" /assets/ssp/config.inc.php.template
 
-	cp -R /assets/ssp/config.inc.php.template /www/ssp/conf/config.inc.php
+	cp -R /assets/ssp/config.inc.php.template /www/ssp/conf/config.inc.local.php
 
 	### Force Reset Permissions for Security
 	chown -R nginx:www-data /www/ssp
