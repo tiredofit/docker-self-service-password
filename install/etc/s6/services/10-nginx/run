@@ -82,7 +82,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	if [ ! -f /www/ssp/index.php ] ; then
 	   echo "Self Service Password Not Found, Downloading and setting up......"
 	   mkdir -p /www/ssp/
-	   git clone https://github.com/ltb-project/self-service-password /www/ssp
+	   git clone --depth 1 https://github.com/ltb-project/self-service-password /www/ssp
 	   echo "Insalled... Please visit the website.."
 	   chown nginx:www-data /www/ssp
 	fi
@@ -147,7 +147,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<RECAPTCHA_SIZE>/$RECAPTCHA_SIZE/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<DEFAULT_ACTION>/$DEFAULT_ACTION/g" /assets/ssp/config.inc.php.template
 
-	cp -R /assets/ssp/config.inc.php.template /www/ssp/conf/config.inc.php
+	cp -R /assets/ssp/config.inc.php.template /www/ssp/conf/config.inc.local.php
 
 	### Force Reset Permissions for Security
 	chown -R nginx:www-data /www/ssp
