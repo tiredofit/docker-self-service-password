@@ -1,3 +1,7 @@
+## 2018-02-01 2.7 <dave at tiredofit dot ca>
+
+* Update to support new features in the local configuration
+
 ## 2018-02-01 2.6 <dave at tiredofit dot ca>
 
 * Rebase
