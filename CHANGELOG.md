@@ -1,4 +1,4 @@
-## 2018-02-01 2.7 <dave at tiredofit dot ca>
+## 2.7 2018-09-17 <dave at tiredofit dot ca>
 
 * Update to support new features in the local configuration
 
