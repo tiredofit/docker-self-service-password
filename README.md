@@ -1,19 +1,26 @@
-# hub.docker.com/tiredofit/self-service-password
+# hub.docker.com/r/tiredofit/self-service-password
+
+[![Build Status](https://img.shields.io/docker/build/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
+[![Docker 
+Layers](https://images.microbadger.com/badges/image/tiredofit/self-service-password.svg)](https://microbadger.com/images/tiredofit/self-service-password)
 
 # Introduction
 
-Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password) container image.
+Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password) selfservice password manager for LDAP image.
 
-It will automatically download the latest release from git.
+* This Container uses a [customized Alpine Linux base](https://hub.docker.com/r/tiredofit/alpine) which includes [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities, [zabbix-agent](https://zabbix.org) for individual container monitoring, Cron also installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
 
-This Container uses Alpine:3.5 as a base. Additional Components are PHP7 w/ APC, OpCache, LDAP Support
+This Container uses [tiredofit/alpine:3.7](https://hub.docker.com/r/tiredofit/alpine as a base, and [tiredofit/nginx-php-fpm:7.0](https://hub.docker.com/r/tiredofit/nginx-php-fpm) to provide the serving of the content.
 
+* It will automatically download the latest release from git.
 
 [Changelog](CHANGELOG.md)
 
 # Authors
 
-- [Dave Conroy][https://github.com/tiredofit]
+- [Dave Conroy](https://github.com/tiredofit)
 
 # Table of Contents
 
@@ -32,7 +39,9 @@ This Container uses Alpine:3.5 as a base. Additional Components are PHP7 w/ APC,
 
 # Prerequisites
 
-This image relies on an external LDAP Server, external SMTP Server, and is meant to be run behind a reverse SSL Proxy such as nginx-proxy.
+This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) and optionally the [Let's Encrypt Proxy Companion @ https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) in order to serve your pages. However, it will run just fine on it's own if you map appropriate ports.
+
+This image also relies on an external LDAP Server, external SMTP Server.
 
 
 # Installation
@@ -41,7 +50,7 @@ Automated builds of the image are available on [Docker Hub](https://hub.docker.c
 
 
 ```bash
-docker pull tiredofit/self-service-password
+docker pull tiredofit/self-service-password:latest
 ```
 
 # Quick Start
@@ -63,7 +72,6 @@ The following directories are used for configuration and can be mapped for persi
 | Directory | Description |
 |-----------|-------------|
 | `/www/ssp` | Root SelfService Password Directory |
-| `/www/logs` | Nginx and php-fpm logfiles |
 
 ### Environment Variables
 
@@ -108,7 +116,7 @@ the form. Defaults to `above` |
 | `SMTP_PASS` | SMTP password. No default. |
 | `SMTP_PORT` | SMTP port. Defaults to `587` |
 | `SMTP_SECURE_TYPE` | SMTP secure type to use. `ssl` or `tls`. Defaults to `tls` |
-| `LOGO` | Main Logo - Default images/ltb-logo.png |
+| `LOGO` | Main Logo - `Default images/ltb-logo.png` |
 | `BACKGROUND` | Change background Default images/unsplash-space.jpg|
 | `USE_SMS` | Enable sms notify. (Disabled on this image). Defaults to `false` |
 | `IS_BEHIND_PROXY` | Enable reset url parameter to accept reverse proxy. Defaults to `false`  |
@@ -119,9 +127,9 @@ the form. Defaults to `above` |
 | `USE_RECAPTCHA` | Use Google reCAPTCHA (http://www.google.com/recaptcha). Defaults to `false` |
 | `RECAPTCHA_PUB_KEY` | Go on the site to get public key |
 | `RECAPTCHA_PRIV_KEY` | Go on the site to get private key |
-| `RECAPTCHA_THEME` | Theme of ReCaptcha. Default: light|
-| `RECAPTCHA_TYPE` | Type of ReCaptcha Default: image|
-| `RECAPTCHA_SIZE` | Size of ReCaptcha Default: small|
+| `RECAPTCHA_THEME` | Theme of ReCaptcha. Default: `light`|
+| `RECAPTCHA_TYPE` | Type of ReCaptcha Default: `image` |
+| `RECAPTCHA_SIZE` | Size of ReCaptcha Default: `small` |
 | `DEFAULT_ACTION` | Default action`change` `sendtoken` `sendsms`. Defaults to `change` |
 
 
@@ -131,7 +139,7 @@ The following ports are exposed.
 
 | Port      | Description |
 |-----------|-------------|
-| `80` | HTTP |
+| `80`      | HTTP        |
 
 # Maintenance
 #### Shell Access
@@ -145,6 +153,3 @@ docker exec -it (whatever your container name is e.g. ssp) bash
 # References
 
 * https://ltb-project.org/documentation/self-service-password
-
-
-
