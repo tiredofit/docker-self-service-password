@@ -37,7 +37,7 @@ This image relies on an external LDAP Server, external SMTP Server, and is meant
 
 # Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/tiredofit/self-service-password) and is the recommended method of installation.
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/self-service-password) and is the recommended method of installation.
 
 
 ```bash
