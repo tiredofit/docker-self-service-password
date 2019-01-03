@@ -1,4 +1,8 @@
-## 2.8 2018-09-17 <dave at tiredofit dot ca>
+## 2.8.1 2019-01-03 <cguentherTUChemnitz@github>
+
+* Fix for missing variable for 2.8 release
+
+## 2.8 2019-01-03 <dave at tiredofit dot ca>
 
 * Add SMTP_AUTOTLS boolean environment variable
 * Update Base to PHP 7.2
