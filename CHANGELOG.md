@@ -1,3 +1,9 @@
+## 2.8 2018-09-17 <dave at tiredofit dot ca>
+
+* Add SMTP_AUTOTLS boolean environment variable
+* Update Base to PHP 7.2
+
+
 ## 2.7 2018-09-17 <dave at tiredofit dot ca>
 
 * Update to support new features in the local configuration

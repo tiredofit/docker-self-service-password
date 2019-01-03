@@ -14,12 +14,6 @@ services:
       - LETSENCRYPT_HOST=url.hostname.com
       - LETSENCRYPT_EMAIL=user@hostname.com
 
-      - PHP_MEMORY_LIMIT=128M
-      - UPLOAD_MAX_SIZE=2G
-      - APC_SHM_SIZE=128M
-      - OPCACHE_MEM_SIZE=128
-      - TZ=America/Vancouver
-
       - ZABBIX_HOSTNAME=ssp-app
 
       - LDAP_SERVER=ldap://openldap.example.com
@@ -114,6 +108,7 @@ services:
       - SMTP_PASS=smtppassword
       - SMTP_PORT: 587
       - SMTP_SECURE_TYPE=tls
+      - SMTP_AUTOTLS=false
 ## SMS
 # Use sms (NOT WORKING YET)
       - USE_SMS=false
@@ -147,6 +142,4 @@ networks:
   proxy-tier:
     external:
       name: nginx-proxy
-
-    environment:
 

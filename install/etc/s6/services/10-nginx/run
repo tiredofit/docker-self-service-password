@@ -54,6 +54,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	SMTP_USER=${SMTP_USER:-}
 	SMTP_PASS=${SMTP_PASS:-}
 	SMTP_PORT=${SMTP_PORT:-587}
+	SMTP_AUTOTLS=${SMTP_AUTOTLS:-false}
 	SMTP_SECURE_TYPE=${SMTP_SECURE_TYPE:-tls}
 	USE_SMS=${USE_SMS:-false}
 	LOGO=${LOGO:-'images/ltb-logo.png'}

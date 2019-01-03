@@ -181,6 +181,7 @@ $mail_smtp_port = <SMTP_PORT>;
 $mail_smtp_timeout = 30;
 $mail_smtp_keepalive = false;
 $mail_smtp_secure = '<SMTP_SECURE_TYPE>';
+$mail_smtp_autotls = <SMTP_AUTOTLS>;
 $mail_contenttype = 'text/html';
 $mail_wordwrap = 0; 
 $mail_charset = 'utf-8';

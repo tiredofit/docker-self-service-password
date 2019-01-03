@@ -116,6 +116,7 @@ the form. Defaults to `above` |
 | `SMTP_PASS` | SMTP password. No default. |
 | `SMTP_PORT` | SMTP port. Defaults to `587` |
 | `SMTP_SECURE_TYPE` | SMTP secure type to use. `ssl` or `tls`. Defaults to `tls` |
+| `SMTP_AUTOTLS` | SMTP Auto TLS `true` or `false`. Defaults to `false ` |
 | `LOGO` | Main Logo - `Default images/ltb-logo.png` |
 | `BACKGROUND` | Change background Default images/unsplash-space.jpg|
 | `USE_SMS` | Enable sms notify. (Disabled on this image). Defaults to `false` |
