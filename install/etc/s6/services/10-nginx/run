@@ -132,6 +132,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<SMTP_PASS>/$SMTP_PASS/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<SMTP_PORT>/$SMTP_PORT/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<SMTP_SECURE_TYPE>/$SMTP_SECURE_TYPE/g" /assets/ssp/config.inc.php.template
+	sed -i -e "s/<SMTP_AUTOTLS>/$SMTP_AUTOTLS/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<USE_SMS>/$USE_SMS/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s|<LOGO>|$LOGO|g" /assets/ssp/config.inc.php.template
 	sed -i -e "s|<BACKGROUND>|$BACKGROUND|g" /assets/ssp/config.inc.php.template
