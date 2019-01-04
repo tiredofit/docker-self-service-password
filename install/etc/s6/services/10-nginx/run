@@ -42,7 +42,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	NOTIFY_ON_SSHKEY_CHANGE=${NOTIFY_ON_SSHKEY_CHANGE:-true}
 	WHO_CAN_CHANGE_SSHKEY=${WHO_CAN_CHANGE_SSHKEY:-'user'}
 	QUESTIONS_ENABLED=${QUESTIONS_ENABLED:-true}
-    SKIP_MAIL=${SKIP_MAIL:-'false'}
+	SKIP_MAIL=${SKIP_MAIL:-'false'}
 	LDAP_MAIL_ATTRIBUTE=${LDAP_MAIL_ATTRIBUTE:-'mail'}
 	MAIL_FROM=${MAIL_FROM:-'admin@example.com'}
 	MAIL_FROM_NAME=${MAIL_FROM_NAME:-'No Reply'}
@@ -81,10 +81,10 @@ if [ ! -f /tmp/state/10-nginx ]; then
 
 	### Check to see if this is a new install, if yes download SSP and other pieces...
 	if [ ! -f /www/ssp/index.php ] ; then
-	   echo "Self Service Password Not Found, Downloading and setting up......"
+	   echo "Self Service Password not found, downloading and setting up......"
 	   mkdir -p /www/ssp/
 	   git clone --depth 1 https://github.com/ltb-project/self-service-password /www/ssp
-	   echo "Insalled... Please visit the website.."
+	   echo "Installed... Please visit the website.."
 	   chown nginx:www-data /www/ssp
 	fi
 
