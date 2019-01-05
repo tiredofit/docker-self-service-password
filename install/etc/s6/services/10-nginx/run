@@ -12,82 +12,69 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	touch /www/logs/self-service-password
 	chown nginx:www-data /www/logs/self-service-password
 
-	LDAP_SERVER=${LDAP_SERVER:-}
-	LDAP_STARTTLS=${LDAP_STARTTLS:-false}
-	LDAP_BINDDN=${LDAP_BINDDN:-}
-	LDAP_BINDPASS=${LDAP_BINDPASS:-}
-	LDAP_BASE_SEARCH=${LDAP_BASE_SEARCH:-}
-	LDAP_LOGIN_ATTRIBUTE=${LDAP_LOGIN_ATTRIBUTE:-'uid'}
-	LDAP_FULLNAME_ATTRIBUTE=${LDAP_FULLNAME_ATTRIBUTE:-'cn'}
-	ADMODE=${ADMODE:-false}
-	AD_OPT_FORCE_UNLOCK=${AD_OPT_FORCE_UNLOCK:-false}
-	AD_OPT_FORCE_PWD_CHANGE=${AD_OPT_FORCE_PWD_CHANGE:-false}
 	AD_OPT_CHANGE_EXPIRED_PASSWORD=${AD_OPT_CHANGE_EXPIRED_PASSWORD:-false}
-	SAMBA_MODE=${SAMBA_MODE:-false}
-	SHADOW_OPT_UPDATE_SHADOWLASTCHANGE=${SHADOW_OPT_UPDATE_SHADOWLASTCHANGE:-false}
-	SHADOW_OPT_UPDATE_SHADOWEXPIRE=${SHADOW_OPT_UPDATE_SHADOWEXPIRE:-false}
-	PASSWORD_HASH=${PASSWORD_HASH:-'clear'}
-	PASSWORD_MIN_LENGTH=${PASSWORD_MIN_LENGTH:-0}
-	PASSWORD_MAX_LENGTH=${PASSWORD_MAX_LENGTH:-0}
-	PASSWORD_MIN_LOWERCASE=${PASSWORD_MIN_LOWERCASE:-0}
-	PASSWORD_MIN_UPPERCASE=${PASSWORD_MIN_UPPERCASE:-0}
-	PASSWORD_MIN_DIGIT=${PASSWORD_MIN_DIGIT:-0}
-	PASSWORD_MIN_SPECIAL=${PASSWORD_MIN_SPECIAL:-0}
-	PASSWORD_NO_REUSE=${PASSWORD_NO_REUSE:-true}
-	PASSWORD_SHOW_POLICY=${PASSWORD_SHOW_POLICY:-'never'}
-	PASSWORD_SHOW_POLICY_POSITION=${PASSWORD_SHOW_POLICY_POSITION:-'above'}
-	WHO_CAN_CHANGE_PASSWORD=${WHO_CAN_CHANGE_PASSWORD:-'user'}
+	AD_OPT_FORCE_PWD_CHANGE=${AD_OPT_FORCE_PWD_CHANGE:-false}
+	AD_OPT_FORCE_UNLOCK=${AD_OPT_FORCE_UNLOCK:-false}
+	ADMODE=${ADMODE:-false}
+	BACKGROUND=${BACKGROUND:-'images/unsplash-space.jpeg'}
 	CHANGE_SSHKEY=${CHANGE_SSHKEY:-'false'}
 	CHANGE_SSHKEY_ATTRIBUTE=${CHANGE_SSHKEY_ATTRIBUTE:-'sshPublicKey'}
-	NOTIFY_ON_SSHKEY_CHANGE=${NOTIFY_ON_SSHKEY_CHANGE:-true}
-	WHO_CAN_CHANGE_SSHKEY=${WHO_CAN_CHANGE_SSHKEY:-'user'}
-	QUESTIONS_ENABLED=${QUESTIONS_ENABLED:-true}
-    SKIP_MAIL=${SKIP_MAIL:-'false'}
+	DEBUG_MODE=${DEBUG_MODE:-false}
+	DEFAULT_ACTION=${DEFAULT_ACTION:-'change'}
+	IS_BEHIND_PROXY=${IS_BEHIND_PROXY:-false}
+	LANG=${LANG:-'en'}
+	LDAP_BASE_SEARCH=${LDAP_BASE_SEARCH:-}
+	LDAP_BINDDN=${LDAP_BINDDN:-}
+	LDAP_BINDPASS=${LDAP_BINDPASS:-}
+	LDAP_FULLNAME_ATTRIBUTE=${LDAP_FULLNAME_ATTRIBUTE:-'cn'}
+	LDAP_LOGIN_ATTRIBUTE=${LDAP_LOGIN_ATTRIBUTE:-'uid'}
 	LDAP_MAIL_ATTRIBUTE=${LDAP_MAIL_ATTRIBUTE:-'mail'}
+	LDAP_SERVER=${LDAP_SERVER:-}
+	LDAP_STARTTLS=${LDAP_STARTTLS:-false}
+	LOGO=${LOGO:-'images/ltb-logo.png'}
 	MAIL_FROM=${MAIL_FROM:-'admin@example.com'}
 	MAIL_FROM_NAME=${MAIL_FROM_NAME:-'No Reply'}
 	NOTIFY_ON_CHANGE=${NOTIFY_ON_CHANGE:-false}
+	NOTIFY_ON_SSHKEY_CHANGE=${NOTIFY_ON_SSHKEY_CHANGE:-true}
+	PASSWORD_HASH=${PASSWORD_HASH:-'clear'}
+	PASSWORD_MAX_LENGTH=${PASSWORD_MAX_LENGTH:-0}
+	PASSWORD_MIN_DIGIT=${PASSWORD_MIN_DIGIT:-0}
+	PASSWORD_MIN_LENGTH=${PASSWORD_MIN_LENGTH:-0}
+	PASSWORD_MIN_LOWERCASE=${PASSWORD_MIN_LOWERCASE:-0}
+	PASSWORD_MIN_SPECIAL=${PASSWORD_MIN_SPECIAL:-0}
+	PASSWORD_MIN_UPPERCASE=${PASSWORD_MIN_UPPERCASE:-0}
+	PASSWORD_NO_REUSE=${PASSWORD_NO_REUSE:-true}
+	PASSWORD_SHOW_POLICY=${PASSWORD_SHOW_POLICY:-'never'}
+	PASSWORD_SHOW_POLICY_POSITION=${PASSWORD_SHOW_POLICY_POSITION:-'above'}
+	QUESTIONS_ENABLED=${QUESTIONS_ENABLED:-true}
+	RECAPTCHA_PRIV_KEY=${RECAPTCHA_PRIV_KEY:-}
+	RECAPTCHA_PUB_KEY=${RECAPTCHA_PUB_KEY:-}
+	RECAPTCHA_SIZE=${RECAPTCHA_SIZE:-'normal'}
+	RECAPTCHA_THEME=${RECAPTCHA_THEME:-'light'}
+	RECAPTCHA_TYPE=${RECAPTCHA_TYPE:-'image'}
+	SAMBA_MODE=${SAMBA_MODE:-false}
+	SECRETEKEY=${SECRETEKEY:-'secret'}
+	SHADOW_OPT_UPDATE_SHADOWEXPIRE=${SHADOW_OPT_UPDATE_SHADOWEXPIRE:-false}
+	SHADOW_OPT_UPDATE_SHADOWLASTCHANGE=${SHADOW_OPT_UPDATE_SHADOWLASTCHANGE:-false}
+	SHOW_HELP=${SHOW_HELP:-true}
+	SMTP_AUTH_ON=${SMTP_AUTH_ON:-false}
+	SMTP_AUTOTLS=${SMTP_AUTOTLS:-false}
 	SMTP_DEBUG=${SMTP_DEBUG:-0}
 	SMTP_HOST=${SMTP_HOST:-}
-	TOKEN_LIFETIME=${TOKEN_LIFETIME:-3600}
-	SMTP_AUTH_ON=${SMTP_AUTH_ON:-false}
-	SMTP_USER=${SMTP_USER:-}
 	SMTP_PASS=${SMTP_PASS:-}
 	SMTP_PORT=${SMTP_PORT:-587}
-	SMTP_AUTOTLS=${SMTP_AUTOTLS:-false}
 	SMTP_SECURE_TYPE=${SMTP_SECURE_TYPE:-tls}
+	SMTP_USER=${SMTP_USER:-}
+	TOKEN_LIFETIME=${TOKEN_LIFETIME:-3600}
+	USE_RECAPTCHA=${USE_RECAPTCHA:-false}
 	USE_SMS=${USE_SMS:-false}
-	LOGO=${LOGO:-'images/ltb-logo.png'}
-	BACKGROUND=${BACKGROUND:-'images/unsplash-space.jpeg'}
-
-	IS_BEHIND_PROXY=${IS_BEHIND_PROXY:-false}
+	WHO_CAN_CHANGE_PASSWORD=${WHO_CAN_CHANGE_PASSWORD:-'user'}
+	WHO_CAN_CHANGE_SSHKEY=${WHO_CAN_CHANGE_SSHKEY:-'user'}
+	SKIP_MAIL=${SKIP_MAIL:-'false'}
 
 	if [[ ${IS_BEHIND_PROXY} == true  ]]; then
 		 sed  -i '211s .\{1\}  ' /assets/ssp/config.inc.php.template
 	fi
-
-	SHOW_HELP=${SHOW_HELP:-true}
-	LANG=${LANG:-'en'}
-	DEBUG_MODE=${DEBUG_MODE:-false}
-	SECRETEKEY=${SECRETEKEY:-'secret'}
-	USE_RECAPTCHA=${USE_RECAPTCHA:-false}
-	RECAPTCHA_PUB_KEY=${RECAPTCHA_PUB_KEY:-}
-	RECAPTCHA_PRIV_KEY=${RECAPTCHA_PRIV_KEY:-}
-	RECAPTCHA_THEME=${RECAPTCHA_THEME:-'light'}
-	RECAPTCHA_TYPE=${RECAPTCHA_TYPE:-'image'}
-	RECAPTCHA_SIZE=${RECAPTCHA_SIZE:-'normal'}
-	DEFAULT_ACTION=${DEFAULT_ACTION:-'change'}
-
-
-	### Check to see if this is a new install, if yes download SSP and other pieces...
-	if [ ! -f /www/ssp/index.php ] ; then
-	   echo "Self Service Password Not Found, Downloading and setting up......"
-	   mkdir -p /www/ssp/
-	   git clone --depth 1 https://github.com/ltb-project/self-service-password /www/ssp
-	   echo "Insalled... Please visit the website.."
-	   chown nginx:www-data /www/ssp
-	fi
-
 
 	sed -i -e "s|<LDAP_SERVER>|$LDAP_SERVER|g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<LDAP_STARTTLS>/$LDAP_STARTTLS/g" /assets/ssp/config.inc.php.template
@@ -149,13 +136,22 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<RECAPTCHA_SIZE>/$RECAPTCHA_SIZE/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<DEFAULT_ACTION>/$DEFAULT_ACTION/g" /assets/ssp/config.inc.php.template
 
+	### Check to see if this is a new install, if yes download SSP and other pieces...
+	if [ ! -f /www/ssp/index.php ] ; then
+	   echo "** [self-service-password] Self Service Password Not Found, Installing..."
+	   mkdir -p /www/ssp/
+	   tar xfz /assets/install/v${SSP_VERSION}.tar.gz --strip 1 -C /www/ssp
+	   chown nginx:www-data /www/ssp
+	   echo "** [self-service-password] Installation Complete"
+	fi
+
 	cp -R /assets/ssp/config.inc.php.template /www/ssp/conf/config.inc.local.php
 
 	### Force Reset Permissions for Security
 	chown -R nginx:www-data /www/ssp
 
-	  ## Start nginx
-	  echo 'Initialization Complete' >/tmp/state/10-nginx
+	## Start nginx
+	echo 'Initialization Complete' >/tmp/state/10-nginx
 fi
 
 echo '** [self-service-password] Starting nginx'

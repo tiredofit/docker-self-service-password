@@ -12,9 +12,7 @@ Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/docume
 
 * This Container uses a [customized Alpine Linux base](https://hub.docker.com/r/tiredofit/alpine) which includes [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities, [zabbix-agent](https://zabbix.org) for individual container monitoring, Cron also installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
 
-This Container uses [tiredofit/alpine:3.7](https://hub.docker.com/r/tiredofit/alpine as a base, and [tiredofit/nginx-php-fpm:7.0](https://hub.docker.com/r/tiredofit/nginx-php-fpm) to provide the serving of the content.
-
-* It will automatically download the latest release from git.
+This Container uses [tiredofit/alpine:3.8](https://hub.docker.com/r/tiredofit/alpine as a base, and [tiredofit/nginx-php-fpm:7.2](https://hub.docker.com/r/tiredofit/nginx-php-fpm) to provide the serving of the content.
 
 [Changelog](CHANGELOG.md)
 

@@ -1,3 +1,9 @@
+## 3.0 2019-01-04 <dave at tiredofit dot ca>
+
+* Make version configurable upon Docker build
+* Switch to downloading install upon image build for reliability issues
+* Cleanup startup script 
+
 ## 2.8.1 2019-01-03 <cguentherTUChemnitz@github>
 
 * Fix for missing variable for 2.8 release
@@ -6,7 +12,6 @@
 
 * Add SMTP_AUTOTLS boolean environment variable
 * Update Base to PHP 7.2
-
 
 ## 2.7 2018-09-17 <dave at tiredofit dot ca>
 
@@ -24,7 +29,6 @@
 
 * Added SKIP_MAIL (true/false default false) to be used for webapps/activate-example-org to skip email 
   address confirmation allowing resets to come just by username.
-
 
 ## 2017-08-01 2.3 <dave at tiredofit dot ca>
 
