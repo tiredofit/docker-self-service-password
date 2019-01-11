@@ -73,7 +73,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	SKIP_MAIL=${SKIP_MAIL:-'false'}
 
 	if [[ ${IS_BEHIND_PROXY} == true  ]]; then
-		 sed  -i '212s .\{1\}  ' /assets/ssp/config.inc.php.template
+		 sed 's/#\$reset_url = /\$reset_url = /g' /assets/ssp/config.inc.php.template
 	fi
 
 	sed -i -e "s|<LDAP_SERVER>|$LDAP_SERVER|g" /assets/ssp/config.inc.php.template
