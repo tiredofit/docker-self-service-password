@@ -1,3 +1,7 @@
+## 3.1 2019-02-15 <dave at tiredofit dot ca>
+
+* Add USE_TOKENS
+
 ## 3.0.1 2019-01-04 <dave at tiredofit dot ca>
 
 * Fix regression with `IS_BEHIND_PROXY`

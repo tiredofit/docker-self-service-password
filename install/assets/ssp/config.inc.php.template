@@ -149,7 +149,7 @@ $answer_attribute = "info";
 # Use tokens?
 # true (default)
 # false
-$use_tokens = true;
+$use_tokens = <USE_TOKENS>;
 # Crypt tokens?
 # true (default)
 # false
