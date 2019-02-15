@@ -65,6 +65,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	SMTP_PORT=${SMTP_PORT:-587}
 	SMTP_SECURE_TYPE=${SMTP_SECURE_TYPE:-tls}
 	SMTP_USER=${SMTP_USER:-}
+	USE_TOKENS=${USE_TOKENS:-true}
 	TOKEN_LIFETIME=${TOKEN_LIFETIME:-3600}
 	USE_RECAPTCHA=${USE_RECAPTCHA:-false}
 	USE_SMS=${USE_SMS:-false}
@@ -111,6 +112,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<MAIL_FROM_NAME>/$MAIL_FROM_NAME/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<MAIL_FROM>/$MAIL_FROM/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<NOTIFY_ON_CHANGE>/$NOTIFY_ON_CHANGE/g" /assets/ssp/config.inc.php.template
+	sed -i -e "s/<USE_TOKENS>/$USE_TOKENS/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<TOKEN_LIFETIME>/$TOKEN_LIFETIME/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<SMTP_DEBUG>/$SMTP_DEBUG/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<SMTP_HOST>/$SMTP_HOST/g" /assets/ssp/config.inc.php.template
