@@ -124,6 +124,7 @@ the form. Defaults to `above` |
 | `DEBUG_MODE` | Debug mode. Defaults to `false`. |
 | `SECRETEKEY` | Encryption, decryption keyphrase. Defaults to `secret`. |
 | `USE_RECAPTCHA` | Use Google reCAPTCHA (http://www.google.com/recaptcha). Defaults to `false` |
+| `USE_TOKENS` | Use email to send reset tokens. Defaults to `true` |
 | `RECAPTCHA_PUB_KEY` | Go on the site to get public key |
 | `RECAPTCHA_PRIV_KEY` | Go on the site to get private key |
 | `RECAPTCHA_THEME` | Theme of ReCaptcha. Default: `light`|
