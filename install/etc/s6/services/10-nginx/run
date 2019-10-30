@@ -46,6 +46,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	PASSWORD_NO_REUSE=${PASSWORD_NO_REUSE:-true}
 	PASSWORD_SHOW_POLICY=${PASSWORD_SHOW_POLICY:-'never'}
 	PASSWORD_SHOW_POLICY_POSITION=${PASSWORD_SHOW_POLICY_POSITION:-'above'}
+	PUBLIC_URL=${PUBLIC_URL:-'generated'}
 	QUESTIONS_ENABLED=${QUESTIONS_ENABLED:-true}
 	RECAPTCHA_PRIV_KEY=${RECAPTCHA_PRIV_KEY:-}
 	RECAPTCHA_PUB_KEY=${RECAPTCHA_PUB_KEY:-}
@@ -74,7 +75,11 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	SKIP_MAIL=${SKIP_MAIL:-'false'}
 
 	if [[ ${IS_BEHIND_PROXY} == true  ]]; then
-		 sed -i 's/#\$reset_url = /\$reset_url = /g' /assets/ssp/config.inc.php.template
+		if [[ "${PUBLIC_URL}" == "generated" ]]; then
+			sed -i 's/#\$reset_url = /\$reset_url = /g' /assets/ssp/config.inc.php.template
+		else
+			sed -i -r 's/#\$reset_url = .+$/\$reset_url = "<PUBLIC_URL>";/g' /assets/ssp/config.inc.php.template
+		fi
 	fi
 
 	sed -i -e "s|<LDAP_SERVER>|$LDAP_SERVER|g" /assets/ssp/config.inc.php.template
@@ -101,6 +106,7 @@ if [ ! -f /tmp/state/10-nginx ]; then
 	sed -i -e "s/<PASSWORD_NO_REUSE>/$PASSWORD_NO_REUSE/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<PASSWORD_SHOW_POLICY_POSITION>/$PASSWORD_SHOW_POLICY_POSITION/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<PASSWORD_SHOW_POLICY>/$PASSWORD_SHOW_POLICY/g" /assets/ssp/config.inc.php.template
+	sed -i -e "s#<PUBLIC_URL>#$PUBLIC_URL#g" /assets/ssp/config.inc.php.template # A valid URL contains slashes but may not contain hashes.
 	sed -i -e "s/<CHANGE_SSHKEY>/$CHANGE_SSHKEY/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<CHANGE_SSHKEY_ATTRIBUTE>/$CHANGE_SSHKEY_ATTRIBUTE/g" /assets/ssp/config.inc.php.template
 	sed -i -e "s/<NOTIFY_ON_SSHKEY_CHANGE>/$NOTIFY_ON_SSHKEY_CHANGE/g" /assets/ssp/config.inc.php.template
