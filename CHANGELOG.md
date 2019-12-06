@@ -1,3 +1,8 @@
+## 4.0 2019-12-06 <dave at tiredofit dot ca>
+
+* Refactored Image to support new tiredofit/nginx-php-fpm image
+* PHP 7.3
+
 ## 3.1 2019-02-15 <dave at tiredofit dot ca>
 
 * Add USE_TOKENS
