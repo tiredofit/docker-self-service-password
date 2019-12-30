@@ -1,3 +1,15 @@
+## 4.1.0 2019-12-29 <dave at tiredofit dot ca>
+
+   ### Added
+      - Update to support new tiredofit/alpine base image
+
+
+## 4.0.1 2019-12-19 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Allow for dynamic user/group for nginx
+
+
 ## 4.0 2019-12-06 <dave at tiredofit dot ca>
 
 * Refactored Image to support new tiredofit/nginx-php-fpm image
