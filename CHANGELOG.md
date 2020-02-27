@@ -1,3 +1,15 @@
+## 5.0.0 2020-02-26 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Rewrote entire image
+      - Added multiple new environment variables
+      - Option to run solely off of environment variables without mapping data volumes
+      - Option to overwrite files inside image without having to expose source volume
+      - Ability to switch to manual configuration mode without requiring all environment variables
+      - Set Sane Defaults
+      - Cleanup
+      
+      
 ## 4.1.1 2020-01-02 <dave at tiredofit dot ca>
 
    ### Changed

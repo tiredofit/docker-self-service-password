@@ -12,9 +12,19 @@ services:
       - traefik.docker.network=proxy
       - traefik.backend=ssp-app
     volumes:
+      ### Map /www/ssp if you want to configure the entire application
       - ./data/:/www/ssp
+      #### OR ####
+      ### Map /assets/custom if you want to overwrite/add files on startup and rely on source inside image. Follow directory structure of inside /www/ssp to overwrite
+     #- ./assets/custom:/assets/custom
+      ### You can also just map the configuration directory outside of the container as well
+     #- ./config:/www/ssp/conf
+
       - ./logs/:/www/logs
     environment:
+      ## Set to Manual if you want to edit the configuration yourself without Env Vars
+      - SETUP_TYPE=AUTO
+    # LDAP Settings
       - LDAP_SERVER=ldap://openldap.example.com
       - LDAP_STARTTLS=false
       - LDAP_BINDDN=cn=admin,dc=example,dc=com
@@ -38,10 +48,15 @@ services:
     # true: update sambaNTpassword and sambaPwdLastSet attributes too
     # false: just update the password
       - SAMBA_MODE=false
+      - SAMBA_MIN_AGE=5
+      - SAMBA_MAX_AGE=45
+      - SAMBA_EXPIRE_DAYS=90
 
     # Shadow options - require shadowAccount objectClass
     # Update shadowLastChange
       - SHADOW_OPT_UPDATE_SHADOWLASTCHANGE=false
+      - SHADOW_OPT_UPDATE_SHADOWEXPIRE=false
+
     # Hash mechanism for password:
     # SSHA
     # SHA
@@ -50,8 +65,11 @@ services:
     # CRYPT
     # clear (the default)
     # auto (will check the hash of current password)
-    # This option is not used with ad_mode = true
+    # This option is not used with ADMODE=true
       - PASSWORD_HASH=auto
+    # Prefix to use for salt with CRYPT
+      - PASSWORD_HASH_CRYPT_SALT_PREFIX="\$6\"
+      - PASSWORD_HASH_CRYPT_SALT_LENGTH: 6
 
     # Local password policy
     # This is applied before directory password policy
@@ -69,6 +87,15 @@ services:
       - PASSWORD_MIN_SPECIAL: 0
     # Dont reuse the same password as currently
       - PASSWORD_NO_REUSE=true
+    # Definition of special characters
+      - PASSWORD_SPECIAL_CHARACTERS="^a-zA-Z0-9"
+    # Forbidden characters
+    # Don't reuse the same password as currently
+      - PASSWORD_NO_REUSE=true
+    # Check that password is different than login
+      - PASSWORD_DIFFERENT_LOGIN=true
+    # use pwnedpasswords api v2 to securely check if the password has been on a leak
+      - PASSWORD_USE_PWNED=FALSE
     # Show policy constraints message:
     # always
     # never
@@ -78,25 +105,65 @@ services:
     # above - the form
     # below - the form
       - PASSWORD_SHOW_POLICY_POSITION=above
+    # disallow use of the only special character as defined in `$pwd_special_chars` at the beginning and end
+      - PASSWORD_NO_SPECIAL_ENDS=false
 
     # Who changes the password?
     # Also applicable for question/answer save
     # user: the user itself
     # manager: the above binddn
       - WHO_CAN_CHANGE_PASSWORD=user
+    # Show extended error message returned by LDAP directory when password is refused
+      - LDAP_EXTENDED_ERROR=false
+    # Use standard change form?
+      - CHANGE_PASSWORD=true
+    ## SSH Key Change
+    # Allow changing of sshPublicKey?
+      - CHANGE_SSHKEY=false
+    # What attribute should be changed by the CHANGE_SSHKEY action?
+      - LDAP_SSHKEY_ATTRIBUTE=sshPublicKey
+    # Who changes the sshPublicKey attribute?
+    # Also applicable for question/answer save
+    # user: the user itself
+    # manager: the above binddn
+      - WHO_CAN_CHANGE_SSHKEY=user
+    # Notify users anytime their sshPublicKey is changed
+    ## Requires mail configuration below
+       - NOTIFY_ON_SSHKEY_CHANGE=false
 
     ## Questions/answers
     # Use questions/answers?
     # true (default)
     # false
       - QUESTIONS_ENABLED=false
+    # Allow to register more than one answer?
+      - QUESTIONS_MULTIPLE_ANSWERS= false
+    # Answer attribute should be hidden to users!
+      - QUESTIONS_ANSWER_OBJECTCLASS=extensibleObject
+      - LDAP_ANSWER_ATTRIBUTE=info
+    # Crypt answers inside the directory
+      - QUESTIONS_ANSWERS_CRYPT=true
 
-    ## Mail
+    ## Tokens
+    # Use tokens?
+    # true
+    # false
+      - USE_TOKENS=true
+    # Crypt tokens?
+    # true
+    # false
+      - TOKEN_CRYPT=true
+    # Token lifetime in seconds
+      - TOKEN_LIFETIME: 3600
+
+      ## Mail
     # LDAP mail attribute
       - LDAP_MAIL_ATTRIBUTE=mail
     # Who the email should come from
       - MAIL_FROM=noreply@example.com
-      - MAIL_FROM_NAME=Password Admin
+      - MAIL_FROM_NAME=Self Service Password
+    # Mail Signature
+      #- MAIL_SIGNATURE=""
     # Notify users anytime their password is changed
       - NOTIFY_ON_CHANGE=true
     # PHPMailer configuration (see https://github.com/PHPMailer/PHPMailer)
@@ -105,27 +172,76 @@ services:
       - SMTP_AUTH_ON=true
       - SMTP_USER=noreply@example.com
       - SMTP_PASS=smtppassword
+      - SMTP_TIMEOUT: 30
       - SMTP_PORT: 587
       - SMTP_SECURE_TYPE=tls
+      - SMTP_AUTOTLS: false
+      - MAIL_CONTENTTYPE="text/plain"
+      - MAIL_WORDWRAP: 80
+      - MAIL_CHARSET="utf8"
+      - MAIL_PRIORITY: 3
+      - MAIL_NEWLINE=PHP_EOL
+
     ## SMS
-    # Use sms (NOT WORKING YET)
       - USE_SMS=false
-    # Reset URL (if behind a reverse proxy)
-      - IS_BEHIND_PROXY=false
-    # Display help messages
-      - SHOW_HELP=true
-    # Language
-      - LANG=en
-    # Debug mode
-      - DEBUG_MODE=false
-    # Encryption, decryption keyphrase
-      - SECRETEKEY=secretkey
+    # SMS method (mail, api)
+      - SMS_METHOD="mail"
+      - SMS_API_LIB="lib/smsapi.inc.php"
+    # GSM number attribute
+      - LDAP_SMS_ATTRIBUTE="mobile"
+    # Partially hide number
+      - SMS_PARTIAL_HIDE_NUMBER=true;
+    # Send SMS mail to address
+      - SMS_MAIL_TO="{sms_attribute}@service.provider.com"
+    # Subject when sending email to SMTP to SMS provider
+      - SMS_MAIL_SUBJECT="Provider code"
+    # Message
+      - SMS_MESSAGE="{smsresetmessage} {smstoken}"
+    # Remove non digit characters from GSM number
+      - SMS_SANITIZE_NUMBER=false
+    # Truncate GSM number
+      - SMS_TRUNCATE_NUMBER=false
+      - SMS_TRUNCATE_NUMBER_LENGTH: 10$sms_truncate_number_length = 10;
+    # SMS token length
+      - SMS_TOKEN_LENGTH: 6
+    # Max attempts allowed for SMS token
+      - SMS_TOKEN_MAX_ATTEMPTS: 3
+
     ## CAPTCHA
     # Use Google reCAPTCHA (http://www.google.com/recaptcha)
       - USE_RECAPTCHA=false
     # Go on the site to get public and private key
       - RECAPTCHA_PUB_KEY=akjsdnkajnd
       - RECAPTCHA_PRIV_KEY=aksdjnakjdnsa
+    # Customization (see https://developers.google.com/recaptcha/docs/display)
+      - RECAPTCHA_THEME="light"
+      - RECAPTCHA_TYPE="image"
+      - RECAPTCHA_SIZE="normal"
+    # reCAPTCHA request method, null for default, Fully Qualified Class Name to override
+    # Useful when allow_url_fopen=0 ex. $recaptcha_request_method = '\ReCaptcha\RequestMethod\CurlPost';
+      - RECAPTCHA_REQUEST_METHOD=null
+
+    ## Encryption, decryption keyphrase
+      - SECRETKEY=secretkey
+
+    ## Networking
+    # Is this container behind a reverse proxy
+      - IS_BEHIND_PROXY=true
+
+    ## Misc, Branding Settings
+    # Display help messages
+      - SHOW_HELP=true
+    # Display Menu on top
+      - SHOW_MENU=true
+    # Language
+      - LANG=en
+    # Debug mode
+      - DEBUG_MODE=false
+    # Logo
+      - LOGO="images/ltb-logo.png"
+    # Background Image
+      - BACKGROUND_IMAGE="images/unsplash-space.jpeg"
+
     ## Default action
     # change
     # sendtoken
