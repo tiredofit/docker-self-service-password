@@ -1,3 +1,9 @@
+## 5.0.1 2020-02-26 <dave at tiredofit dot ca>
+
+   ### Added
+      - Add ability to set SITE_URL environment variable if IS_BEHIND_PROXY=true
+
+
 ## 5.0.0 2020-02-26 <dave at tiredofit dot ca>
 
    ### Changed

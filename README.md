@@ -234,6 +234,7 @@ the form. Defaults to `above` |
 | `DEFAULT_ACTION` | Default action`change` `sendtoken` `sendsms`. Defaults to `change` |
 | `ENABLE_RESET_LOG` - Write to log detailing password resets - Default `FALSE` |
 | `IS_BEHIND_PROXY` | Enable reset url parameter to accept reverse proxy. Defaults to `false`  |
+| `SITE_URL` | Use this to hardcode a Site URL if `IS_BEHIND_PROXY=true` - By default it will pull from various HTTP Headers. Example -``https://site.example.com` |
 | `LANG` | Language. Defaults to `en`.  |
 | `LOG_LOCATION` - Log Folder - Default `/www/logs/self-service-password/` |
 | `LOG_RESET` - Reset Logfile - Default `reset.log` |
