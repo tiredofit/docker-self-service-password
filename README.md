@@ -210,7 +210,6 @@ the form. Defaults to `above` |
 | Parameter | Description |
 |-----------|-------------|
 | `CHANGE_SSHKEY` | Enable Changing SSH Key. Defaults to `false` |
-
 | `WHO_CAN_CHANGE_SSHKEY` | Who changes the password?  Also applicable for question/answer save `user`: the user itself `manager`: the above binddn. Defaults to `user` |
 
 #### Recaptcha Settings
