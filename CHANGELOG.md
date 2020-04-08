@@ -1,3 +1,10 @@
+## 5.0.2 2020-04-08 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Cleanup Docker Compose Example
+      - Fix to allow spaces in LDAP_BIND_DN, LDAP_BASE_SEARCH, and LDAP_FILTER environment variables
+
+
 ## 5.0.1 2020-02-26 <dave at tiredofit dot ca>
 
    ### Added

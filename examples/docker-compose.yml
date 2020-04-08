@@ -22,7 +22,8 @@ services:
 
       - ./logs/:/www/logs
     environment:
-      ## Set to Manual if you want to edit the configuration yourself without Env Vars
+    ## Set to Manual if you want to edit the configuration yourself without Env Vars
+      - DEBUG_MODE=TRUE
       - SETUP_TYPE=AUTO
     # LDAP Settings
       - LDAP_SERVER=ldap://openldap.example.com
@@ -34,8 +35,8 @@ services:
       - LDAP_FULLNAME_ATTRIBUTE=cn
 
     # Active Directory mode
-    # true: use unicodePwd as password field
-    # false: LDAPv3 standard behavior
+    # true=use unicodePwd as password field
+    # false=LDAPv3 standard behavior
       - ADMODE=false
     # Force account unlock when password is changed
       - AD_OPT_FORCE_UNLOCK=false
@@ -45,8 +46,8 @@ services:
       - AD_OPT_CHANGE_EXPIRED_PASSWORD=false
 
     # Samba mode
-    # true: update sambaNTpassword and sambaPwdLastSet attributes too
-    # false: just update the password
+    # true=update sambaNTpassword and sambaPwdLastSet attributes too
+    # false=just update the password
       - SAMBA_MODE=false
       - SAMBA_MIN_AGE=5
       - SAMBA_MAX_AGE=45
@@ -68,30 +69,27 @@ services:
     # This option is not used with ADMODE=true
       - PASSWORD_HASH=auto
     # Prefix to use for salt with CRYPT
-      - PASSWORD_HASH_CRYPT_SALT_PREFIX="\$6\"
-      - PASSWORD_HASH_CRYPT_SALT_LENGTH: 6
+      - PASSWORD_HASH_CRYPT_SALT_LENGTH=6
 
     # Local password policy
     # This is applied before directory password policy
     # Minimal length
-      - PASSWORD_MIN_LENGTH: 0
+      - PASSWORD_MIN_LENGTH=0
     # Maximal length
-      - PASSWORD_MAX_LENGTH: 0
+      - PASSWORD_MAX_LENGTH=0
     # Minimal lower characters
-      - PASSWORD_MIN_LOWERCASE: 0
+      - PASSWORD_MIN_LOWERCASE=0
     # Minimal upper characters
-      - PASSWORD_MIN_UPPERCASE: 0
+      - PASSWORD_MIN_UPPERCASE=0
     # Minimal digit characters
-      - PASSWORD_MIN_DIGIT: 0
+      - PASSWORD_MIN_DIGIT=0
     # Minimal special characters
-      - PASSWORD_MIN_SPECIAL: 0
+      - PASSWORD_MIN_SPECIAL=0
     # Dont reuse the same password as currently
       - PASSWORD_NO_REUSE=true
     # Definition of special characters
       - PASSWORD_SPECIAL_CHARACTERS="^a-zA-Z0-9"
     # Forbidden characters
-    # Don't reuse the same password as currently
-      - PASSWORD_NO_REUSE=true
     # Check that password is different than login
       - PASSWORD_DIFFERENT_LOGIN=true
     # use pwnedpasswords api v2 to securely check if the password has been on a leak
@@ -110,8 +108,8 @@ services:
 
     # Who changes the password?
     # Also applicable for question/answer save
-    # user: the user itself
-    # manager: the above binddn
+    # user=the user itself
+    # manager=the above binddn
       - WHO_CAN_CHANGE_PASSWORD=user
     # Show extended error message returned by LDAP directory when password is refused
       - LDAP_EXTENDED_ERROR=false
@@ -124,12 +122,12 @@ services:
       - LDAP_SSHKEY_ATTRIBUTE=sshPublicKey
     # Who changes the sshPublicKey attribute?
     # Also applicable for question/answer save
-    # user: the user itself
-    # manager: the above binddn
+    # user=the user itself
+    # manager=the above binddn
       - WHO_CAN_CHANGE_SSHKEY=user
     # Notify users anytime their sshPublicKey is changed
     ## Requires mail configuration below
-       - NOTIFY_ON_SSHKEY_CHANGE=false
+      - NOTIFY_ON_SSHKEY_CHANGE=false
 
     ## Questions/answers
     # Use questions/answers?
@@ -154,7 +152,7 @@ services:
     # false
       - TOKEN_CRYPT=true
     # Token lifetime in seconds
-      - TOKEN_LIFETIME: 3600
+      - TOKEN_LIFETIME=3600
 
       ## Mail
     # LDAP mail attribute
@@ -167,19 +165,19 @@ services:
     # Notify users anytime their password is changed
       - NOTIFY_ON_CHANGE=true
     # PHPMailer configuration (see https://github.com/PHPMailer/PHPMailer)
-      - SMTP_DEBUG: 0
+      - SMTP_DEBUG=0
       - SMTP_HOST=smtp.example.com
       - SMTP_AUTH_ON=true
       - SMTP_USER=noreply@example.com
       - SMTP_PASS=smtppassword
-      - SMTP_TIMEOUT: 30
-      - SMTP_PORT: 587
+      - SMTP_TIMEOUT=30
+      - SMTP_PORT=587
       - SMTP_SECURE_TYPE=tls
-      - SMTP_AUTOTLS: false
+      - SMTP_AUTOTLS=false
       - MAIL_CONTENTTYPE="text/plain"
-      - MAIL_WORDWRAP: 80
+      - MAIL_WORDWRAP=80
       - MAIL_CHARSET="utf8"
-      - MAIL_PRIORITY: 3
+      - MAIL_PRIORITY=3
       - MAIL_NEWLINE=PHP_EOL
 
     ## SMS
@@ -201,11 +199,11 @@ services:
       - SMS_SANITIZE_NUMBER=false
     # Truncate GSM number
       - SMS_TRUNCATE_NUMBER=false
-      - SMS_TRUNCATE_NUMBER_LENGTH: 10$sms_truncate_number_length = 10;
+      - SMS_TRUNCATE_NUMBER_LENGTH=10$sms_truncate_number_length = 10;
     # SMS token length
-      - SMS_TOKEN_LENGTH: 6
+      - SMS_TOKEN_LENGTH=6
     # Max attempts allowed for SMS token
-      - SMS_TOKEN_MAX_ATTEMPTS: 3
+      - SMS_TOKEN_MAX_ATTEMPTS=3
 
     ## CAPTCHA
     # Use Google reCAPTCHA (http://www.google.com/recaptcha)
