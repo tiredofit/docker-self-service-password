@@ -1,3 +1,9 @@
+## 5.0.3 2020-05-08 <ingwarsw@github>
+
+   ## Changed
+      - Cleaned up left over references to pre 5.x build relying on templates, notably fixing `SITE_URL` parameter
+
+
 ## 5.0.2 2020-04-08 <dave at tiredofit dot ca>
 
    ### Changed
