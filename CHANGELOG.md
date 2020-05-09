@@ -1,3 +1,9 @@
+## 5.0.4 2020-05-10 <ingwarsw@github>
+
+   ## Changed
+      - Additional work regarding `SITE_URL` parameter
+
+
 ## 5.0.3 2020-05-08 <ingwarsw@github>
 
    ## Changed
