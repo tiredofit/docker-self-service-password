@@ -153,7 +153,7 @@ the form. Defaults to `above` |
 |-----------|-------------|
 | `USE_QUESTIONS` | Use questions/answers?  `true` or `false`. Defaults to `false` |
 | `QUESTIONS_ANSWER_CRYPT` | Default `true` |
-| `QUESTIONS_MULTIPLE_ANSWERS | Allow multiple answers for Questions - Default - `false` |
+| `QUESTIONS_MULTIPLE_ANSWERS` | Allow multiple answers for Questions - Default - `false` |
 
 #### Mail Settings
 
@@ -235,7 +235,7 @@ the form. Defaults to `above` |
 | `IS_BEHIND_PROXY` | Enable reset url parameter to accept reverse proxy. Defaults to `false`  |
 | `SITE_URL` | Use this to hardcode a Site URL if `IS_BEHIND_PROXY=true` - By default it will pull from various HTTP Headers. Example -``https://site.example.com` |
 | `LANG` | Language. Defaults to `en`.  |
-| `LOG_LOCATION` - Log Folder - Default `/www/logs/self-service-password/` |
+| `LOG_LOCATION` | Log Folder - Default `/www/logs/self-service-password/` |
 | `LOG_RESET` - Reset Logfile - Default `reset.log` |
 | `LOGO` | Main Logo - `Default images/ltb-logo.png` |
 | `SECRETKEY` | Encryption, decryption keyphrase. Defaults to`secret` |
