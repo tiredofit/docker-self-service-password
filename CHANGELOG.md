@@ -1,3 +1,9 @@
+## 5.1.1 2020-06-15 <madmath03@github>
+
+   ### Changed
+      - Fixed custom background image not displaying correctly
+
+
 ## 5.1.0 2020-06-09 <dave at tiredofit dot ca>
 
    ### Added
