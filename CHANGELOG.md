@@ -1,3 +1,9 @@
+## 5.1.2 2020-07-21 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Properly quote variables to allow for multi word strings (such as Mail From Name)
+
+
 ## 5.1.1 2020-06-15 <madmath03@github>
 
    ### Changed
