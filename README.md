@@ -1,6 +1,5 @@
 # hub.docker.com/r/tiredofit/self-service-password
 
-[![Build Status](https://img.shields.io/docker/build/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
 [![Docker Stars](https://img.shields.io/docker/stars/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
 [![Docker
@@ -47,7 +46,7 @@ This Container uses [tiredofit/alpine:3.11](https://hub.docker.com/r/tiredofit/a
 
 ## Prerequisites
 
-This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) and optionally the [Let's Encrypt Proxy Companion @ https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) in order to serve your pages. However, it will run just fine on it's own if you map appropriate ports.
+This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) or [traefik](https://github.com/traefik/traefik).
 
 This image also relies on an external LDAP Server, external SMTP Server.
 
