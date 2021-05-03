@@ -1,21 +1,20 @@
-# hub.docker.com/r/tiredofit/self-service-password
+# github.com/tiredofit/docker-self-service-password
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
-[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/self-service-password.svg)](https://hub.docker.com/r/tiredofit/self-service-password)
-[![Docker
-Layers](https://images.microbadger.com/badges/image/tiredofit/self-service-password.svg)](https://microbadger.com/images/tiredofit/self-service-password)
+[![GitHub release](https://img.shields.io/github/v/tag/tiredofit/docker-self-service-password?style=flat-square)](https://github.com/tiredofit/docker-self-service-password/releases/latest)
+[![Build Status](https://img.shields.io/github/workflow/status/tiredofit/docker-self-service-password/build?style=flat-square)](https://github.com/tiredofit/docker-self-service-password/actions?query=workflow%3Abuild)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/self-service-password.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/self-service-password/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/self-service-password.svg?style=flat-square&logo=docker)](https://hub.docker.com/r/tiredofit/self-service-password/)
+[![Become a sponsor](https://img.shields.io/badge/sponsor-tiredofit-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/tiredofit)
+[![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/tiredofit)
 
-## Introduction
+* * *
 
-Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password) selfservice password manager for LDAP image.
+## About
 
-* This Container uses a [customized Alpine Linux base](https://hub.docker.com/r/tiredofit/alpine) which includes [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities, [zabbix-agent](https://zabbix.org) for individual container monitoring, Cron also installed along with other tools (bash,curl, less, logrotate, nano, vim) for easier management.
+Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password) self service password reset tool for infrastructure with an LDAP backend.
 
-This Container uses [tiredofit/alpine:3.11](https://hub.docker.com/r/tiredofit/alpine) as a base, and [tiredofit/nginx-php-fpm:7.3](https://hub.docker.com/r/tiredofit/nginx-php-fpm) to provide the serving of the content.
 
-[Changelog](CHANGELOG.md)
-
-## Authors
+## Maintainer
 
 - [Dave Conroy](https://github.com/tiredofit)
 
@@ -44,21 +43,34 @@ This Container uses [tiredofit/alpine:3.11](https://hub.docker.com/r/tiredofit/a
   - [Shell Access](#shell-access)
 - [References](#references)
 
-## Prerequisites
-
-This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) or [traefik](https://github.com/traefik/traefik).
-
-This image also relies on an external LDAP Server, external SMTP Server.
+## Prerequisites and Assumptions
+*  Assumes you are using some sort of SSL terminating reverse proxy such as:
+   *  [Traefik](https://github.com/tiredofit/docker-traefik)
+   *  [Nginx](https://github.com/jc21/nginx-proxy-manager)
+   *  [Caddy](https://github.com/caddyserver/caddy)
+* Require - Access to an LDAP Server
+* Require - Access to a SMTP Server
 
 
 ## Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/self-service-password) and is the recommended method of installation.
+### Build from Source
+Clone this repository and build the image with `docker build <arguments> (imagename) .`
+
+### Prebuilt Images
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/self-service-password) and is the recommended method of installation.
+
+The following image tags are available along with their taged release based on what's written in the [Changelog](CHANGELOG.md):
+
+| Container OS | Tag       |
+| ------------ | --------- |
+| Alpine       | `:latest` |
+
+#### Multi Archictecture
+Images are built primarily for `amd64` architecture, and may also include builds for `arm/v6`, `arm/v7`, `arm64` and others. These variants are all unsupported. Consider [sponsoring](https://github.com/sponsors/tiredofit) my work so that I can work with various hardware. To see if this image supports multiple architecures, type `docker manifest (image):(tag)`
 
 
-```bash
-docker pull tiredofit/self-service-password:latest
-```
+## Configuration
 
 ### Quick Start
 
@@ -69,10 +81,7 @@ modified for development or production use.
 * Set various [environment variables](#environment-variables) to understand the capabilities of this
 image.
 * Map [persistent storage](#data-volumes) for access to configuration and data files for backup.
-
-## Configuration
-
-### Data-Volumes
+### Persistent Storage
 
 The following directories are used for configuration and can be mapped for persistent storage.
 
@@ -97,9 +106,17 @@ If you want to manually configure the application you can set `SETUP_TYPE=MANUAL
 | `/www/ssp/conf` | SSP Configuration Directory |
 
 
-### Environment Variables
+#### Base Images used
 
-Along with the Environment Variables from the [Base image](https://hub.docker.com/r/tiredofit/alpine), the [Nginx Image](https://hub.docker.com/r/tiredofit/nginx), and the [Nginx+PHP-FPM Engine](https://hub.docker.com/r/tiredofit/nginx-php-fpm) below is the complete list of available options that can be used to customize your installation.
+This image relies on an [Alpine Linux](https://hub.docker.com/r/tiredofit/alpine) or [Debian Linux](https://hub.docker.com/r/tiredofit/debian) base image that relies on an [init system](https://github.com/just-containers/s6-overlay) for added capabilities. Outgoing SMTP capabilities are handlded via `msmtp`. Individual container performance monitoring is performed by [zabbix-agent](https://zabbix.org). Additional tools include: `bash`,`curl`,`less`,`logrotate`,`nano`,`vim`.
+
+Be sure to view the following repositories to understand all the customizable options:
+
+| Image                                                         | Description                            |
+| ------------------------------------------------------------- | -------------------------------------- |
+| [OS Base](https://github.com/tiredofit/docker-alpine/)        | Customized Image based on Alpine Linux |
+| [Nginx](https://github.com/tiredofit/docker-nginx/)           | Nginx webserver                        |
+| [PHP-FPM](https://github.com/tiredofit/docker-nginx-php-fpm/) | PHP Interpreter                        |
 
 | Parameter    | Description                                                                                   | Default |
 | ------------ | --------------------------------------------------------------------------------------------- | ------- |
@@ -149,8 +166,8 @@ Along with the Environment Variables from the [Base image](https://hub.docker.co
 | `PASSWORD_MIN_UPPERCASE`        | Minimal upper characters.                                                                                                | `0` (unchecked). |
 | `PASSWORD_NO_REUSE`             | Dont reuse the same password as currently.                                                                               | `true`.          |
 | `PASSWORD_NO_SPECIAL_ENDS`      | Dont allow special characters at start and end of password                                                               | `false`          |
-| `PASSWORD_SHOW_POLICY_POSITION` | Position of password policy constraints message `above` `below` | `above`                                                         |
-| `PASSWORD_SHOW_POLICY`          | Show policy constraints message`always` `never` `onerror`                                                               | `never`          |
+| `PASSWORD_SHOW_POLICY_POSITION` | Position of password policy constraints message `above` `below`                                                          | `above`          |
+| `PASSWORD_SHOW_POLICY`          | Show policy constraints message`always` `never` `onerror`                                                                | `never`          |
 | `PASSWORD_SPECIAL_CHARACTERS`   | Define Special Characters                                                                                                | `^a-zA-Z0-9`     |
 | `PASSWORD_USE_PWNED`            | Utilize HaveIbeenpwned.com Password checking service                                                                     | `false`          |
 | `WHO_CAN_CHANGE_PASSWORD`       | Who changes the password?  Also applicable for question/answer save `user`: the user itself `manager`: the above binddn. | `user`           |
@@ -258,15 +275,34 @@ The following ports are exposed.
 | ---- | ----------- |
 | `80` | HTTP        |
 
+* * *
 ## Maintenance
+
 ### Shell Access
 
 For debugging and maintenance purposes you may want access the containers shell.
 
-```bash
-docker exec -it (whatever your container name is e.g. ssp) bash
-```
+``bash
+docker exec -it (whatever your container name is) bash
+``
+## Support
 
-## References
+These images were built to serve a specific need in a production environment and gradually have had more functionality added based on requests from the community.
+### Usage
+- The [Discussions board](../../discussions) is a great place for working with the community on tips and tricks of using this image.
+- Consider [sponsoring me](https://github.com/sponsors/tiredofit) personalized support.
+### Bugfixes
+- Please, submit a [Bug Report](issues/new) if something isn't working as expected. I'll do my best to issue a fix in short order.
+
+### Feature Requests
+- Feel free to submit a feature request, however there is no guarantee that it will be added, or at what timeline.
+- Consider [sponsoring me](https://github.com/sponsors/tiredofit) regarding development of features.
+
+### Updates
+- Best effort to track upstream changes, More priority if I am actively using the image in a production environment.
+- Consider [sponsoring me](https://github.com/sponsors/tiredofit) for up to date releases.
+
+## License
+MIT. See [LICENSE](LICENSE) for more details.## References
 
 * https://ltb-project.org/documentation/self-service-password
