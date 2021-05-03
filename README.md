@@ -105,7 +105,7 @@ If you want to manually configure the application you can set `SETUP_TYPE=MANUAL
 | --------------- | --------------------------- |
 | `/www/ssp/conf` | SSP Configuration Directory |
 
-
+### Environment Variables
 #### Base Images used
 
 This image relies on an [Alpine Linux](https://hub.docker.com/r/tiredofit/alpine) or [Debian Linux](https://hub.docker.com/r/tiredofit/debian) base image that relies on an [init system](https://github.com/just-containers/s6-overlay) for added capabilities. Outgoing SMTP capabilities are handlded via `msmtp`. Individual container performance monitoring is performed by [zabbix-agent](https://zabbix.org). Additional tools include: `bash`,`curl`,`less`,`logrotate`,`nano`,`vim`.
@@ -305,4 +305,5 @@ These images were built to serve a specific need in a production environment and
 ## License
 MIT. See [LICENSE](LICENSE) for more details.## References
 
+## References
 * https://ltb-project.org/documentation/self-service-password
