@@ -253,7 +253,7 @@ Be sure to view the following repositories to understand all the customizable op
 
 | Parameter                                                   | Description                                                                                                                                         | Default                            |
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `BACKGROUND`                                                | Change background Default `images/unsplash-space.jpg`                                                                                               |
+| `BACKGROUND_IMAGE`                                          | Change background Default `images/unsplash-space.jpg`                                                                                               |
 | `DEBUG_MODE`                                                | Debug mode.                                                                                                                                         | `false`                            |
 | `DEFAULT_ACTION`                                            | Default action`change` `sendtoken` `sendsms`.                                                                                                       | `change`                           |
 | `ENABLE_RESET_LOG` - Write to log detailing password resets | `FALSE`                                                                                                                                             |
