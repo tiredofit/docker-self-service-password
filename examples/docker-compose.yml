@@ -33,6 +33,7 @@ services:
       - LDAP_BASE_SEARCH=ou=people,dc=example,dc=com
       - LDAP_LOGIN_ATTRIBUTE=uid
       - LDAP_FULLNAME_ATTRIBUTE=cn
+      - LDAP_CA_CERTIFICATE=/www/ssp/ca.pem
 
     # Active Directory mode
     # true=use unicodePwd as password field
