@@ -1,3 +1,9 @@
+## 5.2.0 2021-02-11 <arnebjarne@github>
+
+   ### Added
+      - LDAP CA Support for AD Authentication
+
+
 ## 5.1.2 2020-07-21 <dave at tiredofit dot ca>
 
    ### Changed
