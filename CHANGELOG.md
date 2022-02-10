@@ -1,3 +1,9 @@
+## 5.2.1 2022-02-10 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Update to support upstream image changes
+
+
 ## 5.2.0 2021-02-11 <arnebjarne@github>
 
    ### Added
