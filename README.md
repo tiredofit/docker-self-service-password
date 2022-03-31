@@ -11,7 +11,7 @@
 
 ## About
 
-Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password) self service password reset tool for infrastructure with an LDAP backend.
+Dockerfile to build a [LTB-Self Service Password](https://ltb-project.org/documentation/self-service-password.html) self service password reset tool for infrastructure with an LDAP backend.
 
 
 ## Maintainer
