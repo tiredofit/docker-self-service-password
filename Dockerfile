@@ -4,6 +4,7 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 ENV SSP_VERSION=1.3 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
+    NGINX_SITES_ENABLED=ssp \
     NGINX_WEBROOT="/www/ssp" \
     IMAGE_NAME="tiredofit/self-service-password" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-self-service-password/"
