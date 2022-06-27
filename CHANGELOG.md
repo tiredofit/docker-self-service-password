@@ -1,3 +1,9 @@
+## 5.2.3 2022-06-27 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Bug fix to 5.2.2
+
+
 ## 5.2.2 2022-06-23 <dave at tiredofit dot ca>
 
    ### Added
