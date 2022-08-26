@@ -1,3 +1,9 @@
+## 5.3.0 2022-08-26 <stefandesu@github>
+
+   ### Added
+      - Support for Password Complexity Checking
+
+
 ## 5.2.3 2022-06-27 <dave at tiredofit dot ca>
 
    ### Changed
