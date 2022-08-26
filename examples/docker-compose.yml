@@ -86,6 +86,8 @@ services:
       - PASSWORD_MIN_DIGIT=0
     # Minimal special characters
       - PASSWORD_MIN_SPECIAL=0
+    # Minimum number of different classes of characters
+      - PASSWORD_COMPLEXITY=0
     # Dont reuse the same password as currently
       - PASSWORD_NO_REUSE=true
     # Definition of special characters

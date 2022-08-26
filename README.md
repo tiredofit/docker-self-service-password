@@ -165,6 +165,7 @@ Be sure to view the following repositories to understand all the customizable op
 | `PASSWORD_MIN_LOWERCASE`        | Minimal lower characters.                                                                                                | `0` (unchecked). |
 | `PASSWORD_MIN_SPECIAL`          | Minimal special characters.                                                                                              | `0` (unchecked). |
 | `PASSWORD_MIN_UPPERCASE`        | Minimal upper characters.                                                                                                | `0` (unchecked). |
+| `PASSWORD_COMPLEXITY`           | Minimum number of different classes of characters.                                                                       | `0` (unchecked). |
 | `PASSWORD_NO_REUSE`             | Dont reuse the same password as currently.                                                                               | `true`.          |
 | `PASSWORD_NO_SPECIAL_ENDS`      | Dont allow special characters at start and end of password                                                               | `false`          |
 | `PASSWORD_SHOW_POLICY_POSITION` | Position of password policy constraints message `above` `below`                                                          | `above`          |
