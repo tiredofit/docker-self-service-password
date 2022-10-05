@@ -1,3 +1,9 @@
+## 5.3.1 2022-10-05 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Migrate legacy nginx configuration
+
+
 ## 5.3.0 2022-08-26 <stefandesu@github>
 
    ### Added
