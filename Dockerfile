@@ -1,7 +1,7 @@
 FROM docker.io/tiredofit/nginx-php-fpm:7.4
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-ENV SSP_VERSION=1.3 \
+ENV SSP_VERSION=1.5.2 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     NGINX_SITE_ENABLED=ssp \
