@@ -204,7 +204,7 @@ Be sure to view the following repositories to understand all the customizable op
 | `SMTP_KEEPALIVE`          | SMTP Keepalive                                                                     | `false`                 |
 | `SMTP_PASS`               | SMTP password.                                                                     |                         |
 | `SMTP_PORT`               | SMTP port.                                                                         | `587`                   |
-| `SMTP_SECURE_TYPE`        | SMTP secure type to use. `ssl` or `tls`.                                           | `tls`                   |
+| `SMTP_SECURE_TYPE`        | SMTP secure type to use. `ssl` or `tls`. Use `false` for unencrypted connections.  | `tls`                   |
 | `SMTP_TIMEOUT`            | SMTP Timeout in seconds                                                            | `30`                    |
 | `SMTP_USER`               | SMTP user.                                                                         |                         |
 
