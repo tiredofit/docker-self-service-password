@@ -1,5 +1,8 @@
-FROM docker.io/tiredofit/nginx-php-fpm:7.4
-LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
+ARG PHP_VERSION=7.4
+ARG DISTRO="alpine"
+
+FROM docker.io/tiredofit/nginx-php-fpm:${PHP_VERSION}-${DISTRO}
+LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ENV SSP_VERSION=1.3 \
     PHP_ENABLE_LDAP=TRUE \
@@ -9,13 +12,12 @@ ENV SSP_VERSION=1.3 \
     IMAGE_NAME="tiredofit/self-service-password" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-self-service-password/"
 
-### Dependency Installation
- RUN set -x && \
-     apk update && \
-     apk upgrade && \
+ RUN source /assets/functions/00-container && \
+     set -x && \
+     package update && \
+     package upgrade && \
      mkdir -p /assets/install && \
      curl -sSL -o /assets/install/v${SSP_VERSION}.tar.gz https://github.com/ltb-project/self-service-password/archive/v${SSP_VERSION}.tar.gz && \
-     rm -rf /var/cache/apk/*
+     package cleanup
 
-### Files Addition
 ADD install /

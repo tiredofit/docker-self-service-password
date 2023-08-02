@@ -1,3 +1,9 @@
+## 5.3.3 2023-08-02 <dave at tiredofit dot ca>
+
+   ### Added
+      - Modernize Docker image and workflows
+
+
 ## 5.3.2 2023-08-02 <mrachuta@github>
 
    ### Added
