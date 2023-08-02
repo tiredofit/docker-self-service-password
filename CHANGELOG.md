@@ -1,3 +1,9 @@
+## 5.3.2 2023-08-02 <mrachuta@github>
+
+   ### Added
+      - Add support for unencrypted SMTP
+
+
 ## 5.3.1 2022-10-05 <dave at tiredofit dot ca>
 
    ### Changed
