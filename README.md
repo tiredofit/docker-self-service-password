@@ -231,6 +231,15 @@ Be sure to view the following repositories to understand all the customizable op
 | `SMS_TOKEN_LENGTH`           | How many digits for a SMS Code   | `6`                                     |
 | `SMS_TRUNCATE_NUMBER_LENGTH` | How many characters for above    | `10`                                    |
 | `SMS_TRUNCATE_NUMBER`        | Truncate Characters of number    | `false`                                 |
+| `TWILIO_SID`                 | Twilio SID for API access        | None                                    |
+| `TWILIO_AUTH_TOKEN`          | Twilio auth token for API access | None                                    |
+| `TWILIO_OUTGOING_NUMBER`     | Number to send SMS from          | None                                    |
+
+Twilio setup:
+
+Set `SMS_API_LIB` to `lib/smsapi-twilio.inc.php`.
+
+You can get the TWILIO_SID and TWILIO_AUTH_TOKEN from [the Twilio console](https://www.twilio.com/console), and the TWILIO_OUTGOING_NUMBER from [the Twilio phone number database](https://www.twilio.com/console/phone-numbers/search).
 
 #### SSH Settings
 
