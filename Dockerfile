@@ -4,7 +4,7 @@ ARG DISTRO="alpine"
 FROM docker.io/tiredofit/nginx-php-fpm:${PHP_VERSION}-${DISTRO}
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV SSP_VERSION=1.3 \
+ENV SSP_VERSION=1.5.3 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     NGINX_SITE_ENABLED=ssp \
